@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { LayoutDashboard, Users, Settings } from 'lucide-react'
+import { LayoutDashboard, Users, Settings, FileText, DollarSign } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -17,6 +17,16 @@ const sidebarItems = [
     href: '/talents',
   },
   {
+    title: 'Reports',
+    icon: FileText,
+    href: '/reports',
+  },
+  {
+    title: 'Monetization',
+    icon: DollarSign,
+    href: '/monetization',
+  },
+  {
     title: 'Settings',
     icon: Settings,
     href: '/settings',
@@ -29,7 +39,7 @@ export function Sidebar() {
   return (
     <div className="flex h-full w-[250px] flex-col bg-white border-r border-gray-200">
       <div className="p-6 border-b border-gray-200">
-        <h1 className="text-2xl font-bold text-blue-600">ELOS-AI</h1>
+        <h1 className="text-2xl font-bold text-blue-600">HELOS.AI</h1>
       </div>
       <div className="flex-1">
         <nav className="space-y-1 p-2">
