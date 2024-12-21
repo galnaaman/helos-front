@@ -29,6 +29,7 @@ import { MetricCard } from '@/components/talents/metric-card';
 import { UnderConstruction } from '@/components/under-construction';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
+import { AnimatedGlobe } from '@/components/talents/animated-globe';
 
 type TabType = 'overview' | 'monetization' | 'files' | 'reports';
 
@@ -68,6 +69,7 @@ export default function TalentProfilePage() {
       case 'overview':
         return (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left Column */}
             <div className="lg:col-span-2 space-y-6">
               {/* Artist Overview */}
               <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6">
@@ -128,53 +130,76 @@ export default function TalentProfilePage() {
               </div>
             </div>
 
-            {/* Notification Settings */}
-            <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Settings className="h-5 w-5 text-gray-400" />
-                <h2 className="text-xl font-semibold text-gray-900">Notification Settings</h2>
+            {/* Right Column */}
+            <div className="space-y-6">
+              {/* Web Scanning Status - Moved to right column */}
+              <div className="bg-white rounded-xl shadow-sm p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-semibold text-gray-900 font-display">Web Scanning Status</h2>
+                  <span className={cn(
+                    "px-2.5 py-1 rounded-full text-xs font-medium",
+                    talent.status === 'active' 
+                      ? "bg-green-50 text-green-700" 
+                      : "bg-gray-50 text-gray-600"
+                  )}>
+                    {talent.status === 'active' ? 'Active' : 'Inactive'}
+                  </span>
+                </div>
+                <div className="flex items-center justify-center p-2">
+                  <div className="w-full aspect-square max-w-[300px]">
+                    <AnimatedGlobe isActive={talent.status === 'active'} />
+                  </div>
+                </div>
               </div>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <Bell className="h-5 w-5 text-gray-400" />
-                    <div>
-                      <p className="font-medium">Real-time Alerts</p>
-                      <p className="text-sm text-gray-500">Get instant notifications for new alerts</p>
-                    </div>
-                  </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" className="sr-only peer" defaultChecked />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
-                  </label>
-                </div>
 
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 text-gray-400" />
-                    <div>
-                      <p className="font-medium">Email Reports</p>
-                      <p className="text-sm text-gray-500">Receive daily summary via email</p>
-                    </div>
-                  </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" className="sr-only peer" defaultChecked />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
-                  </label>
+              {/* Notification Settings */}
+              <div className="bg-white rounded-xl shadow-sm p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Settings className="h-4 w-4 text-gray-400" />
+                  <h2 className="text-lg font-semibold text-gray-900">Notification Settings</h2>
                 </div>
-
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <AlertCircle className="h-5 w-5 text-gray-400" />
-                    <div>
-                      <p className="font-medium">Critical Updates</p>
-                      <p className="text-sm text-gray-500">Important notifications about your account</p>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <Bell className="h-4 w-4 text-gray-400" />
+                      <div>
+                        <p className="font-medium text-sm">Real-time Alerts</p>
+                        <p className="text-xs text-gray-500">Get instant notifications</p>
+                      </div>
                     </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" className="sr-only peer" defaultChecked />
+                      <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
+                    </label>
                   </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" className="sr-only peer" defaultChecked />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
-                  </label>
+
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <Mail className="h-4 w-4 text-gray-400" />
+                      <div>
+                        <p className="font-medium text-sm">Email Reports</p>
+                        <p className="text-xs text-gray-500">Daily summary via email</p>
+                      </div>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" className="sr-only peer" defaultChecked />
+                      <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
+                    </label>
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4 text-gray-400" />
+                      <div>
+                        <p className="font-medium text-sm">Critical Updates</p>
+                        <p className="text-xs text-gray-500">Important notifications</p>
+                      </div>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" className="sr-only peer" defaultChecked />
+                      <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,7 @@
 import { Talent } from '@/types/talent';
 
+// @ts-ignore
+// @ts-ignore
 const drakeMockData: Talent = {
   id: 'TAL-0001',
   firstName: 'Aubrey',
@@ -53,6 +55,7 @@ const drakeMockData: Talent = {
       username: 'Drake',
     },
   ],
+  tags: ['Hip Hop', 'R&B', 'Pop Rap', 'Songwriting', 'Production'],
 };
 
 export const mockTalents: Talent[] = Array.from({ length: 50 }, (_, i) => ({
@@ -69,8 +72,9 @@ export const mockTalents: Talent[] = Array.from({ length: 50 }, (_, i) => ({
   status: Math.random() > 0.2 ? 'active' : 'inactive',
   photos: [],
   voiceRecords: [],
-  socialMedia: []
+  socialMedia: [],
+  tags: ['Software Development', 'Cloud Computing', 'AI/ML', 'DevOps'].slice(0, 2 + Math.floor(Math.random() * 3)),
 }));
 
 // Add Drake's data to the mock talents array
-mockTalents[0] = drakeMockData; 
+mockTalents[0] = drakeMockData;

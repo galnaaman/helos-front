@@ -1,5 +1,5 @@
 export interface SocialMedia {
-  platform: 'instagram' | 'tiktok' | 'facebook' | 'twitter' | 'youtube' | 'spotify';
+  platform: string;
   url: string;
   username: string;
 }
@@ -28,4 +28,5 @@ export interface Talent {
   photos: string[];
   voiceRecords: VoiceRecord[];
   socialMedia: SocialMedia[];
+  tags: string[];
 } 
