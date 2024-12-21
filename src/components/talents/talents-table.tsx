@@ -20,7 +20,7 @@ interface TalentsTableProps {
 export function TalentsTable({ talents: initialTalents }: TalentsTableProps) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortField, setSortField] = useState<keyof Talent>('name');
+  const [sortField, setSortField] = useState<keyof Talent>('firstName');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedIndustry, setSelectedIndustry] = useState<string>('all');
